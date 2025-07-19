@@ -10,6 +10,8 @@
 #include "hal/ccm.h"
 #include "hal/radio.h"
 
+#include <zephyr/bluetooth/chan_idx.h>
+
 #include <soc.h>
 #include "hal/debug.h"
 
@@ -23,6 +25,9 @@ static uint8_t chan_sel_remap_index(uint8_t *chan_map, uint8_t chan_index);
 static uint16_t chan_prn_subevent_se(uint16_t chan_id,
 				     uint16_t *prn_subevent_lu);
 static uint8_t chan_d(uint8_t n);
+
+uint8_t last_channel_index1;
+
 #endif /* CONFIG_BT_CTLR_ISO */
 #endif /* CONFIG_BT_CTLR_CHAN_SEL_2 */
 
@@ -47,6 +52,8 @@ uint8_t lll_chan_sel_1(uint8_t *chan_use, uint8_t hop, uint16_t latency, uint8_t
 	} else {
 		/* channel can be used, return it */
 	}
+	
+	//printk("lll_chan_sel_1: chan_idx: %i\n", chan_next );
 
 	return chan_next;
 }
@@ -86,6 +93,11 @@ uint8_t lll_chan_sel_2(uint16_t counter, uint16_t chan_id, uint8_t *chan_map,
 	} else {
 		/* channel can be used, return it */
 	}
+	
+	//printk("lll_chan_sel_2: chan_idx: %i\n", chan_next );
+
+	if( force_channel_index1 ) 
+		chan_next = last_channel_index_set1;
 
 	return chan_next;
 }
@@ -106,6 +118,8 @@ uint8_t lll_chan_iso_event(uint16_t counter, uint16_t chan_id,
 	*prn_s = chan_prn_s(counter, chan_id);
 	prn_e = *prn_s ^ chan_id;
 	chan_idx = prn_e % 37;
+
+	//printk("chan_idx: %i\n", chan_idx );
 
 	if ((chan_map[chan_idx >> 3] & (1 << (chan_idx % 8))) == 0U) {
 		*remap_idx = ((uint32_t)chan_count * prn_e) >> 16;

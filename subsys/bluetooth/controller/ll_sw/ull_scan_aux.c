@@ -56,6 +56,8 @@
 
 #include <zephyr/bluetooth/hci_types.h>
 
+#include <zephyr/bluetooth/chan_idx.h>
+
 #include <soc.h>
 #include "hal/debug.h"
 
@@ -791,7 +793,14 @@ void ull_scan_aux_setup(memq_link_t *link, struct node_rx_pdu *rx)
 	/* Initialize the channel index and PHY for the Auxiliary PDU reception.
 	 */
 	lll_aux->chan = aux_ptr->chan_idx;
+
+	uint8_t chan_idx1 = aux_ptr->chan_idx;
+	last_channel_index1 = chan_idx1;
+	//printk("chan_idx1: %i\n", chan_idx1);
+
 	lll_aux->phy = phy_aux;
+
+	
 
 	/* See if this was already scheduled from LLL. If so, store aux context
 	 * in global scan struct so we can pick it when scanned node is received

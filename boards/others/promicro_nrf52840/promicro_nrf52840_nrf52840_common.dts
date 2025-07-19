@@ -27,6 +27,22 @@
 			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
 			label = "Red LED";
 		};
+		led31: led_31 {
+			gpios = <&gpio0 31 GPIO_ACTIVE_HIGH>;
+			label = "White LED";
+		};
+		led29: led_29 {
+			gpios = <&gpio0 29 GPIO_ACTIVE_HIGH>;
+			label = "Green LED";
+		};
+		led2: led_2 {
+			gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+			label = "Green LED";
+		};
+		led9: led_9 {
+			gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+			label = "Green LED";
+		};
 	};
 
 	pwmleds {
@@ -39,6 +55,10 @@
 
 	aliases {
 		led0 = &led0;
+		led31 = &led31;
+		led29 = &led29;
+		led2 = &led2;
+		led9 = &led9;
 		pwm-led0 = &red_pwm_led;
 		red-pwm-led = &red_pwm_led;
 		bootloader-led0 = &led0;
@@ -69,6 +89,7 @@
 	status = "okay";
 };
 
+/*
 &uart0 {
 	compatible = "nordic,nrf-uarte";
 	status = "okay";
@@ -101,7 +122,6 @@
 	pinctrl-names = "default", "sleep";
 };
 
-
 &spi2 {
 	compatible = "nordic,nrf-spi";
 	status = "okay";
@@ -109,6 +129,7 @@
 	pinctrl-1 = <&spi2_sleep>;
 	pinctrl-names = "default", "sleep";
 };
+*/
 
 &ieee802154 {
 	status = "okay";

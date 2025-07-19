@@ -183,6 +183,8 @@ static int prepare_cb(struct lll_prepare_param *p)
 	chan_idx = aux_ptr->chan_idx;
 #endif /* !CONFIG_BT_TICKER_EXT_EXPIRE_INFO */
 
+	//printk("prepare_cb: chan_idx: %i\n", chan_idx);
+
 	/* Increment counter, for next channel index calculation */
 	lll->data_chan_counter++;
 
