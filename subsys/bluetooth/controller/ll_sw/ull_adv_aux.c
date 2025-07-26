@@ -3169,6 +3169,9 @@ void ull_adv_aux_lll_auxptr_fill(struct pdu_adv *pdu, struct lll_adv *adv)
 	/* Calculate and fill the radio channel to use */
 	data_chan_map = aux->chm[aux->chm_first].data_chan_map;
 	data_chan_count = aux->chm[aux->chm_first].data_chan_count;
+
+	//printk("...\n");
+
 	aux_ptr->chan_idx = lll_chan_sel_2(chan_counter,
 					   aux->data_chan_id,
 					   data_chan_map, data_chan_count);
@@ -3314,9 +3317,14 @@ static void mfy_aux_offset_get(void *param)
 	/* Calculate the radio channel to use */
 	data_chan_map = aux->chm[aux->chm_first].data_chan_map;
 	data_chan_count = aux->chm[aux->chm_first].data_chan_count;
+	
+	
 	aux_ptr->chan_idx = lll_chan_sel_2(chan_counter,
 					   aux->data_chan_id,
 					   data_chan_map, data_chan_count);
+	
+	int chan_idx1 = aux_ptr->chan_idx;
+	//printk("chan_idx1: %3i\n", chan_idx1);
 
 	/* Assertion check for delayed aux_offset calculations */
 	ticks_now = ticker_ticks_now_get();

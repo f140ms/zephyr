@@ -272,6 +272,8 @@ static int prepare_cb_common(struct lll_prepare_param *p)
 					   &lll->data_chan.prn_s,
 					   &lll->data_chan.remap_idx);
 
+	printk("%i\n", data_chan_use  );
+
 	/* Initialize stream current */
 	lll->stream_curr = 0U;
 

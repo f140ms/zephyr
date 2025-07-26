@@ -152,8 +152,12 @@ static int prepare_cb(struct lll_prepare_param *p)
 	/* Calculate the radio channel to use */
 	data_chan_map = lll->chm[lll->chm_first].data_chan_map;
 	data_chan_count = lll->chm[lll->chm_first].data_chan_count;
+
+
 	data_chan_use = lll_chan_sel_2(event_counter, lll->data_chan_id,
 				       data_chan_map, data_chan_count);
+
+	printk("%s: %i", __FILE__, data_chan_use);
 
 	/* Start setting up of Radio h/w */
 	radio_reset();

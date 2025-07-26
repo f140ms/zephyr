@@ -162,6 +162,8 @@ void lll_sync_aux_prepare_cb(struct lll_sync *lll,
 
 	radio_pkt_rx_set(node_rx->pdu);
 
+	printk("%s: %i", __FILE__, lll_aux->chan);
+
 	/* Set access address for sync */
 	radio_aa_set(lll->access_addr);
 	radio_crc_configure(PDU_CRC_POLYNOMIAL,
@@ -336,6 +338,7 @@ static int create_prepare_cb(struct lll_prepare_param *p)
 		}
 	}
 
+
 	radio_switch_complete_and_disable();
 
 	/* RSSI enable must be called after radio_switch_XXX function because it clears
@@ -347,6 +350,7 @@ static int create_prepare_cb(struct lll_prepare_param *p)
 
 	DEBUG_RADIO_START_O(1);
 
+	printk("%i\n", chan_idx);
 	return 0;
 }
 
@@ -425,6 +429,7 @@ static int prepare_cb(struct lll_prepare_param *p)
 
 	DEBUG_RADIO_START_O(1);
 
+	printk("%i\n", chan_idx);
 	return 0;
 }
 

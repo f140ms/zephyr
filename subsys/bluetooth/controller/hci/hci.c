@@ -3078,6 +3078,10 @@ static void le_df_connectionless_iq_report(struct pdu_data *pdu_rx,
 	sep->cte_type = iq_report->cte_info.type;
 
 	sep->chan_idx = iq_report->chan_idx;
+	int t1 = sep->chan_idx;
+
+	printk("hci.c::%s::sep->chan_idx: %i", __func__, t1);
+
 	sep->per_evt_counter = sys_cpu_to_le16(per_evt_counter);
 
 	if (sep->cte_type == BT_HCI_LE_AOA_CTE) {
@@ -3209,6 +3213,10 @@ static void le_df_connection_iq_report(struct node_rx_pdu *node_rx, struct net_b
 	sep->cte_type = iq_report->cte_info.type;
 
 	sep->data_chan_idx = iq_report->chan_idx;
+	int t1 = data_chan_idx;
+
+	printk("hci.c::%s: %i", __func__, t1);
+	
 	sep->conn_evt_counter = sys_cpu_to_le16(iq_report->event_counter);
 
 	if (sep->cte_type == BT_HCI_LE_AOA_CTE) {
@@ -5418,6 +5426,10 @@ static void vs_le_df_connectionless_iq_report(struct pdu_data *pdu_rx, struct no
 	sep->cte_type = iq_report->cte_info.type;
 
 	sep->chan_idx = iq_report->chan_idx;
+	int t1 = sep->chan_idx;
+
+	printk("hci.c::%s::sep->chan_idx: %i", __func__, t1);
+
 	sep->per_evt_counter = sys_cpu_to_le16(per_evt_counter);
 
 	if (sep->cte_type == BT_HCI_LE_AOA_CTE) {
@@ -5504,6 +5516,10 @@ static void vs_le_df_connection_iq_report(struct node_rx_pdu *node_rx, struct ne
 	sep->cte_type = iq_report->cte_info.type;
 
 	sep->data_chan_idx = iq_report->chan_idx;
+	
+	int t1 = sep->chan_data_idx;
+
+	printk("hci.c::%s::sep->chan_data_idx: %i", __func__, t1);
 	sep->conn_evt_counter = sys_cpu_to_le16(iq_report->event_counter);
 
 	if (sep->cte_type == BT_HCI_LE_AOA_CTE) {

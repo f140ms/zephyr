@@ -305,6 +305,8 @@ void lll_scan_aux_isr_aux_setup(void *param)
 			    RADIO_PKT_CONF_PHY(phy_aux));
 	lll_chan_set(aux_ptr->chan_idx);
 
+	printk("aaa: %i", aux_ptr->chan_idx);
+
 	radio_pkt_rx_set(node_rx->pdu);
 
 	/* Use isr_rx_ull_schedule if already have aux context allocated,

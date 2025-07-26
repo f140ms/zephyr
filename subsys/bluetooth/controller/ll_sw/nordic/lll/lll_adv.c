@@ -48,6 +48,8 @@
 #include "lll_prof_internal.h"
 #include "lll_df_internal.h"
 
+#include <zephyr/bluetooth/chan_idx.h>
+
 #include "hal/debug.h"
 
 #define PDU_FREE_TIMEOUT K_SECONDS(5)
@@ -1464,10 +1466,21 @@ static struct pdu_adv *chan_prepare(struct lll_adv *lll)
 	uint8_t chan;
 	uint8_t upd;
 
-	chan = find_lsb_set(lll->chan_map_curr);
+	if( force_channel_index_std1 )
+	{
+		chan = last_channel_index_std_set1+1;
+	}
+	else
+	{
+		chan = find_lsb_set(lll->chan_map_curr);
+	}
 	LL_ASSERT(chan);
 
 	lll->chan_map_curr &= (lll->chan_map_curr - 1);
+
+	int a = lll->chan_map_curr;
+
+	//printk("a: %3i %3i\n", 36+chan, a);
 
 	lll_chan_set(36 + chan);
 

@@ -247,6 +247,8 @@ int lll_df_conf_cte_rx_enable(uint8_t slot_duration, uint8_t ant_num, const uint
 	radio_df_iq_data_packet_set(node_rx->pdu, IQ_SAMPLE_TOTAL_CNT);
 	node_rx->chan_idx = chan_idx;
 
+	printk("%i\n", chan_idx);
+
 	return 0;
 }
 #endif /* CONFIG_BT_CTLR_DF_SCAN_CTE_RX || CONFIG_BT_CTLR_DF_CONN_CTE_RX */
