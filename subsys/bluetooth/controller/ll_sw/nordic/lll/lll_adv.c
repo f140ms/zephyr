@@ -1478,7 +1478,7 @@ static struct pdu_adv *chan_prepare(struct lll_adv *lll)
 
 	lll->chan_map_curr &= (lll->chan_map_curr - 1);
 
-	int a = lll->chan_map_curr;
+	//int a = lll->chan_map_curr;
 
 	//printk("a: %3i %3i\n", 36+chan, a);
 
