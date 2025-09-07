@@ -644,7 +644,7 @@ uint32_t lll_preempt_calc(struct ull_hdr *ull, uint8_t ticker_id,
 void lll_chan_set(uint32_t chan)
 {
 
-	//printk("%i\n", chan);
+	//printk("lll_chan_set: %i\n", chan);
 
 	switch (chan) {
 	case 37:

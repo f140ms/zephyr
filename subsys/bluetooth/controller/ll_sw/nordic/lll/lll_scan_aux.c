@@ -303,9 +303,10 @@ void lll_scan_aux_isr_aux_setup(void *param)
 	radio_phy_set(phy_aux, PHY_FLAGS_S8);
 	radio_pkt_configure(RADIO_PKT_CONF_LENGTH_8BIT, LL_EXT_OCTETS_RX_MAX,
 			    RADIO_PKT_CONF_PHY(phy_aux));
-	lll_chan_set(aux_ptr->chan_idx);
 
-	printk("aaa: %i", aux_ptr->chan_idx);
+	//printk("lll_scan_aux_isr_aux_setup: chan_idx: %i\n", aux_ptr->chan_idx);
+
+	lll_chan_set(aux_ptr->chan_idx);	
 
 	radio_pkt_rx_set(node_rx->pdu);
 
