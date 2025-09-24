@@ -34,6 +34,8 @@
 #include "lll_internal.h"
 #include "lll_prof_internal.h"
 
+#include <zephyr/bluetooth/chan_idx.h>
+
 #include "hal/debug.h"
 
 #if defined(CONFIG_BT_CTLR_ZLI)
@@ -646,7 +648,10 @@ void lll_chan_set(uint32_t chan)
 
 	//printk("lll_chan_set: %i\n", chan);
 
-	switch (chan) {
+	uint32_t chan1 = chan;
+	last_channel_index2 = chan1;
+
+	switch (chan1) {
 	case 37:
 		radio_freq_chan_set(2);
 		break;
@@ -660,17 +665,17 @@ void lll_chan_set(uint32_t chan)
 		break;
 
 	default:
-		if (chan < 11) {
-			radio_freq_chan_set(4 + (chan * 2U));
-		} else if (chan < 40) {
-			radio_freq_chan_set(28 + ((chan - 11) * 2U));
+		if (chan1 < 11) {
+			radio_freq_chan_set(4 + (chan1 * 2U));
+		} else if (chan1 < 40) {
+			radio_freq_chan_set(28 + ((chan1 - 11) * 2U));
 		} else {
 			LL_ASSERT(0);
 		}
 		break;
 	}
 
-	radio_whiten_iv_set(chan);
+	radio_whiten_iv_set(chan1);
 }
 
 

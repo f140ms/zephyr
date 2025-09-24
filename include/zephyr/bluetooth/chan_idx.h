@@ -3,6 +3,7 @@
 
 
 extern uint8_t last_channel_index1;
+extern uint8_t last_channel_index2;
 
 extern uint8_t force_channel_index1;
 extern uint8_t last_channel_index_set1;
